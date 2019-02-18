@@ -24,7 +24,7 @@ async def by_id(request):
 		query = select([db.users.c.login, db.users.c.status]).where(db.users.c.id == user_id)
 		result = await conn.fetch(query)
 		if result and result[0][1]:
-			str_res="login: {0}".format(result[0][0])
+			str_res="id: {0} \t login: {1}".format(user_id, result[0][0])
 		else:
 			str_res="No match found"
 
@@ -36,7 +36,7 @@ async def by_login(request):
 		query = select([db.users.c.id, db.users.c.status]).where(db.users.c.login == user_login)
 		result = await conn.fetch(query)
 		if result and result[0][1]:
-			str_res="id: {0}".format(result[0][0])
+			str_res="id: {0} \t login: {1}".format(result[0][0], user_login)
 		else:
 			str_res="No match found"
 
